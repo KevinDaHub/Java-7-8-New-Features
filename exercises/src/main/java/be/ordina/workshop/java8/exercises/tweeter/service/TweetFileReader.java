@@ -34,11 +34,7 @@ public class TweetFileReader extends TweetReader {
 				String[] tweet = line.split(csvSplitBy);
 				tweetCache.add(new Tweet((long) ++id, tweet[0], tweet[1], tweet[2], LocalDateTime.parse(tweet[3], formatter), Integer.valueOf(tweet[4]), Integer.valueOf(tweet[5])));
 			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
+		} catch (IOException | URISyntaxException e) {
 			e.printStackTrace();
 		} finally {
 			if (br != null) {

@@ -1,7 +1,9 @@
 package be.ordina.workshop.java8.exercises;
 
+import be.ordina.workshop.java8.exercises.tweeter.model.Tweet;
 import be.ordina.workshop.java8.exercises.tweeter.service.TweetService;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,6 +19,25 @@ public class Exercise2 {
 		// Create a HashMap with as key the username of the tweeter and value the amount of tweets
         // Be sure to utilise the diamond operator when initialising the HashMap and use a switch statement on the
         // username while iterating over the tweets.
-        return null;
+
+		HashMap<String, Integer> tweetMap = new HashMap<>();
+
+		for(Tweet tw: tweetService.findTweets()){
+			switch (tw.getUsername()){
+
+				case "@BBC_TopGear":
+				case "@JeremyClarkson":
+					increaseCounter(tweetMap, tw.getUsername());
+
+			}
+
+
+		}
+        return tweetMap;
+	}
+
+	private static void increaseCounter(Map<String, Integer> map, String username) {
+		Integer count = map.get(username) != null ? map.get(username) : 0;
+		map.put(username, ++count);
 	}
 }
